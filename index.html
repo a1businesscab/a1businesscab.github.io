@@ -1,0 +1,342 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+    <meta name="theme-color" content="#F6C84C" />
+    <title>Luxury Cab Service</title>
+    <style>
+      /* Minimal, mobile-first stylesheet */
+      :root {
+        --bg: #fbfbfb;
+        --card: #ffffff;
+        --muted: #6b7280;
+        --accent: #f6c84c; /* warm yellow */
+        --text: #111827;
+        --radius: 14px;
+        --gap: 14px;
+        --shadow: 0 6px 18px rgba(16, 24, 40, 0.06);
+        --safe-bottom: env(safe-area-inset-bottom, 12px);
+      }
+
+      html,
+      body {
+        height: 100%;
+      }
+      body {
+        margin: 0;
+        font-family:
+          Inter,
+          system-ui,
+          -apple-system,
+          "Segoe UI",
+          Roboto,
+          "Helvetica Neue",
+          Arial;
+        background: linear-gradient(180deg, var(--bg), #ffffff);
+        color: var(--text);
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        padding: 20px 16px 84px; /* leave room for fixed CTA */
+        box-sizing: border-box;
+        display: flex;
+        justify-content: center;
+      }
+
+      .row {
+        display: flex;
+        gap: 12px;
+      }
+
+      .row .half {
+        flex: 1;
+        min-width: 0; /* prevents overflow on mobile */
+      }
+
+      .wrap {
+        width: 100%;
+        max-width: 520px;
+      }
+
+      header {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        margin-bottom: var(--gap);
+      }
+
+      h1 {
+        font-size: 20px;
+        margin: 0;
+        font-weight: 700;
+        letter-spacing: 0.2px;
+      }
+
+      img.logo {
+        width: 56px;
+        height: 56px;
+        object-fit: cover;
+        border-radius: 12px;
+        box-shadow: var(--shadow);
+        background: linear-gradient(135deg, #fff 0%, rgba(0, 0, 0, 0.02) 100%);
+      }
+
+      .card {
+        background: var(--card);
+        border-radius: var(--radius);
+        padding: 16px;
+        box-shadow: var(--shadow);
+        margin-bottom: 12px;
+      }
+
+      h2 {
+        font-size: 15px;
+        margin: 0 0 6px 0;
+        font-weight: 600;
+      }
+      h3 {
+        font-size: 13px;
+        margin: 0;
+        color: var(--muted);
+        font-weight: 500;
+      }
+
+      label {
+        display: block;
+        font-size: 12px;
+        color: var(--muted);
+        margin-bottom: 6px;
+      }
+
+      input[type="text"],
+      input[type="tel"],
+      input[type="date"],
+      input[type="time"] {
+        width: 100%;
+        padding: 12px 12px;
+        border-radius: 10px;
+        border: 1px solid #ececec;
+        background: transparent;
+        font-size: 15px;
+        outline: none;
+        box-sizing: border-box;
+      }
+
+      input:focus {
+        border-color: rgba(246, 200, 76, 0.9);
+        box-shadow: 0 6px 18px rgba(246, 200, 76, 0.12);
+      }
+
+      .field {
+        margin-bottom: 12px;
+      }
+
+      /* FIX: Prevent Date/Time overflow on iOS & Android */
+      input[type="date"],
+      input[type="time"] {
+        min-width: 0;
+        max-width: 100%;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        -webkit-appearance: none;
+      }
+      .field {
+        min-width: 0;
+        overflow: hidden;
+      }
+
+      footer {
+        font-size: 13px;
+        font-weight: bold;
+        color: var(--muted);
+        text-align: center;
+        padding: 10px 6px;
+      }
+
+      /* Primary CTA fixed at bottom for easy thumb reach */
+      .cta-wrap {
+        position: fixed;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        padding: 12px 16px calc(var(--safe-bottom) + 12px);
+        background: linear-gradient(0deg, rgba(255, 255, 255, 0.98), rgba(255, 255, 255, 0.6));
+        backdrop-filter: blur(6px);
+        box-shadow: 0 -6px 18px rgba(16, 24, 40, 0.04);
+      }
+
+      #submitBtn {
+        width: 100%;
+        display: block;
+        border: 0;
+        padding: 14px 16px;
+        border-radius: 12px;
+        font-size: 16px;
+        font-weight: 700;
+        background: linear-gradient(90deg, var(--accent), #eec05a);
+        color: #111;
+        box-shadow: 0 8px 20px rgba(246, 200, 76, 0.18);
+      }
+
+      #submitBtn:disabled {
+        opacity: 0.6;
+      }
+
+      @media (min-width: 480px) {
+        body {
+          padding-left: 20px;
+          padding-right: 20px;
+        }
+        h1 {
+          font-size: 22px;
+        }
+      }
+
+      @media (max-height: 600px) {
+        h1 {
+          font-size: 18px;
+        }
+        .logo {
+          width: 48px;
+          height: 48px;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="wrap">
+      <header>
+        <img class="logo" src="logo.png" alt="Yellow Lux Cab" />
+        <div>
+          <h1>Luxury Cab Service</h1>
+          <div style="font-size: 12px; color: var(--muted)">₹40/km • One-way fares • Tolls Included</div>
+        </div>
+      </header>
+
+      <section class="card" aria-labelledby="routeTitle">
+        <form id="bookingForm" autocomplete="on">
+          <div class="field">
+            <label for="from">From</label>
+            <input id="from" name="from" type="text" placeholder="Madurai" required />
+          </div>
+
+          <div class="field">
+            <label for="to">To</label>
+            <input id="to" name="to" type="text" placeholder="Chennai" required />
+          </div>
+          <div class="row">
+            <div class="field half">
+              <label for="date">Pick Up Date</label>
+              <input id="date" name="date" type="date" required />
+            </div>
+
+            <div class="field half">
+              <label for="time">Pick Up Time</label>
+              <input id="time" name="time" type="time" required />
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="phone">Phone Number</label>
+            <input
+              id="phone"
+              name="phone"
+              type="tel"
+              placeholder="9845212345"
+              pattern="^[0-9]{10}$"
+              maxlength="10"
+              required />
+          </div>
+
+          <div class="field">
+            <label for="name">Name</label>
+            <input id="name" name="name" type="text" placeholder="Name" required />
+          </div>
+          <footer>Honda Elevate • Max 3 pax.</footer>
+        </form>
+      </section>
+    </div>
+    <div class="cta-wrap">
+      <button id="submitBtn" aria-label="Submit booking">Send Message</button>
+    </div>
+
+    <script>
+      const now = new Date();
+      const dateField = document.getElementById("date");
+      dateField.value = now.toISOString().split("T")[0];
+
+      const timeField = document.getElementById("time");
+      const future = new Date(now.getTime() + 6 * 60 * 60 * 1000);
+      if (future.getMinutes() > 0 || future.getSeconds() > 0) {
+        future.setHours(future.getHours() + 1);
+      }
+      future.setMinutes(0, 0, 0);
+      timeField.value = future.toTimeString().slice(0, 5);
+
+      const form = document.getElementById("bookingForm");
+      const btn = document.getElementById("submitBtn");
+
+      const waNumber = "919894517171";
+
+      const isIOS = /iPhone|iPad|iPod/i.test(navigator.userAgent);
+      const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+
+      function buildWhatsAppUrl(phone, encodedText) {
+        if (isMobile) {
+          return `whatsapp://send?phone=${phone}&text=${encodedText}`;
+        } else {
+          return `https://wa.me/${phone}?text=${encodedText}`;
+        }
+      }
+
+      btn.addEventListener("click", (e) => {
+        e.preventDefault();
+        if (!form.reportValidity()) return;
+
+        const data = new FormData(form);
+        const payload = {};
+        for (const [k, v] of data.entries()) payload[k] = v;
+
+        const lines = [
+          "New Booking Request",
+          "",
+          `From: ${payload.from || "-"}`,
+          `To: ${payload.to || "-"}`,
+          `Pick-up Date: ${payload.date || "-"}`,
+          `Pick-up Time: ${payload.time || "-"}`,
+          `Name: ${payload.name || "-"}`,
+          `Phone: ${payload.phone || "-"}`,
+          "",
+          `Honda Elevate, ₹40/km, Tolls Incl, Max 3 pax.`
+        ];
+        const message = lines.join("\n");
+        const encoded = encodeURIComponent(message);
+
+        const waUrl = buildWhatsAppUrl(waNumber, encoded);
+
+        btn.disabled = true;
+        const previousText = btn.textContent;
+        btn.textContent = "Opening WhatsApp...";
+
+        if (isIOS) {
+          window.location.href = waUrl;
+        } else {
+          const opened = window.open(waUrl, "_blank");
+          if (!opened) {
+            window.location.href = waUrl;
+          }
+        }
+
+        setTimeout(() => {
+          btn.textContent = "Message opened ✓";
+          setTimeout(() => {
+            btn.disabled = false;
+            btn.textContent = previousText;
+          }, 2000);
+        }, 900);
+      });
+    </script>
+  </body>
+</html>
